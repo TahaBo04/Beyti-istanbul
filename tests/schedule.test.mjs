@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {casablancaDate,shiftFor,SHIFTS} from '../schedule.mjs';
+import {casablancaDate,shiftFor,SHIFTS} from '../api/_schedule.mjs';
 
 test('Saturday and Sunday swaps for all three people',()=>{
   assert.equal(shiftFor('nouhayla',6),'11:00 – 19:00');
