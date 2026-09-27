@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#153d33" />
+  <title>Mon planning · Beyti Istanbul</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><div class="brand"><span class="brand-mark">B</span><span>Beyti Istanbul <small>Planning d’équipe</small></span></div><span class="top-date" id="top-date"></span></header>
+    <main>
+      <section class="login-card" id="login-view" hidden>
+        <p class="eyebrow">ESPACE ÉQUIPE</p><h1>Votre journée, en un regard.</h1>
+        <p class="lead">Connectez-vous pour retrouver votre horaire personnel.</p>
+        <form id="login-form">
+          <label for="email">Adresse e-mail</label><input id="email" name="email" type="email" autocomplete="username" required placeholder="vous@exemple.com" />
+          <label for="password">Mot de passe</label><input id="password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Votre mot de passe" />
+          <button type="submit" class="primary" id="login-button">Se connecter</button>
+          <p class="error" id="login-error" role="alert" hidden></p>
+        </form>
+        <p class="hint">Accès réservé aux trois membres de l’équipe. Les comptes sont créés par le responsable.</p>
+      </section>
+      <section class="login-card" id="setup-view" hidden>
+        <p class="eyebrow">CONFIGURATION</p><h1>Le site est prêt.</h1>
+        <p class="lead">La connexion doit encore être configurée par le responsable. Voir le guide dans le dépôt.</p>
+      </section>
+      <section class="dashboard" id="dashboard-view" hidden>
+        <div class="dashboard-head"><div><p class="eyebrow">VOTRE PLANNING</p><h1>Bonjour <span id="first-name"></span></h1><p class="lead">Voici votre service à Beyti Istanbul.</p></div><button class="text-button" type="button" id="logout-button">Se déconnecter</button></div>
+        <div class="today-card"><div><span class="card-label">AUJOURD’HUI</span><h2 id="today-label"></h2><p id="today-date"></p></div><div class="shift" id="today-shift"></div></div>
+        <div class="week-head"><h2>Votre semaine</h2><p>Horaires de Casablanca · du lundi au dimanche</p></div>
+        <div class="week-grid" id="week-grid" aria-label="Votre planning de la semaine"></div>
+        <p class="footnote">« Fin de service » correspond à la fermeture, dont l’heure exacte est à confirmer avec le responsable.</p>
+      </section>
+    </main>
+    <footer>Planning hebdomadaire · Beyti Istanbul</footer>
+  </div>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
