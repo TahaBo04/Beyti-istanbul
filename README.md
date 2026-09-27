@@ -1,14 +1,9 @@
 # Beyti Istanbul — planning d’équipe
 
-Mobile-friendly Vercel site for three accounts: `nouhayla`, `kaoutar`, `abderahim`. After logging in, each person sees their own shift for the current day in Casablanca and their week. Saturday and Sunday use the revised rotation.
+Simple mobile-friendly weekly schedule for Nouhayla, Kaoutar and Abderahim. Select a name to see that person's shift today in Casablanca and their full week.
 
-## Deploy
+This is a static site: deploy the repository root to Vercel with the **Other** framework preset. No build command, API, accounts, passwords or environment variables are needed.
 
-1. Import `TahaBo04/Beyti-istanbul` as a new Vercel project. Use the repository root and the **Other** framework preset. The `api/*.mjs` files run as Node.js functions; no external database or build command is needed.
-2. Generate passwords and hashes on a trusted machine using `node scripts/generate-accounts.mjs`. Do not paste its complete output into chat, issues or a Git commit. Give each person only their own password by a private channel.
-3. In Vercel project Settings → Environment Variables, add `BEYTI_USERS` (the generated JSON string with three salted scrypt hashes) and `BEYTI_SESSION_SECRET` (generated random value). Apply to Production. These values must remain private Vercel environment variables. Redeploy after adding them.
-4. Test all three accounts at the production URL, one wrong password, logout and the Sunday/Monday date boundary. You can run `node --test tests/*.test.mjs` locally for schedule and authentication logic.
+The schedule is public to anyone with the site link. “Fin de service” means closing time; its exact hour is set by the manager. Saturday and Sunday use the revised rotation.
 
-The site stores a signed, HttpOnly, Secure, SameSite=Lax cookie for up to seven days. Passwords are checked in server functions, never stored in browser code. “Fin de service” does not imply a specific closing time.
-
-The repository is public and includes the schedule logic, so shifts can be inferred from its source even though the site view requires login. For confidential staff schedules, move those shifts into private storage instead.
+Run `node --test tests/schedule.test.mjs` to check the schedule logic.
