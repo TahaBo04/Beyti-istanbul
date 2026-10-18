@@ -1,4 +1,4 @@
-import {PEOPLE, DAYS, SHIFTS, casablancaDate, shiftFor} from './schedule.mjs';
+import {PEOPLE, DAYS, casablancaDate, shiftFor, weekFor} from './schedule.mjs';
 
 const $ = id => document.getElementById(id);
 let selectedPerson = null;
@@ -11,13 +11,14 @@ function showPeople() {
 
 function render(person) {
   const {dayIndex, iso} = casablancaDate();
+  const week = weekFor(person, iso);
   const date = new Date(`${iso}T12:00:00Z`);
   const dateText = new Intl.DateTimeFormat('fr-MA', {day:'numeric', month:'long', year:'numeric', timeZone:'UTC'}).format(date);
   $('top-date').textContent = `${DAYS[dayIndex]} ${dateText}`;
   $('first-name').textContent = PEOPLE[person];
   $('today-label').textContent = DAYS[dayIndex];
   $('today-date').textContent = dateText;
-  const todayShift = shiftFor(person, dayIndex);
+  const todayShift = shiftFor(person, dayIndex, iso);
   const shift = $('today-shift');
   shift.textContent = todayShift;
   shift.classList.toggle('rest', todayShift === 'Repos');
@@ -33,8 +34,8 @@ function render(person) {
     subtitle.className = 'mini-date';
     subtitle.textContent = index === dayIndex ? 'Aujourd’hui' : 'Service';
     const hours = document.createElement('span');
-    hours.className = 'mini-shift' + (SHIFTS[person][index] === 'Repos' ? ' rest' : '');
-    hours.textContent = SHIFTS[person][index];
+    hours.className = 'mini-shift' + (week[index] === 'Repos' ? ' rest' : '');
+    hours.textContent = week[index];
     card.append(day, subtitle, hours);
     grid.append(card);
   }
