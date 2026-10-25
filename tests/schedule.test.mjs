@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {casablancaDate,shiftFor,SHIFTS,UPDATED_SHIFTS,weekFor} from '../schedule.mjs';
+import {casablancaDate,shiftFor,SHIFTS,UPDATED_SHIFTS,NEXT_SHIFTS,weekFor} from '../schedule.mjs';
 
 test('Saturday and Sunday swaps for all three people',()=>{
   assert.equal(shiftFor('nouhayla',6),'11:00 – 19:00');
@@ -23,5 +23,14 @@ test('handwritten roster starts on October 19 in Casablanca',()=>{
   assert.equal(shiftFor('nouhayla',2,'2026-10-20'),'16:00 – Fin de service');
   assert.deepEqual(weekFor('kaoutar','2026-10-19'),UPDATED_SHIFTS.kaoutar);
   assert.equal(shiftFor('abderahim',0,'2026-10-25'),'11:00 – 19:00');
-  assert.deepEqual(weekFor('kaoutar','2026-10-26'),SHIFTS.kaoutar);
+  assert.deepEqual(weekFor('kaoutar','2026-10-18'),SHIFTS.kaoutar);
+});
+test('annotated roster applies only October 26 through November 1',()=>{
+  assert.deepEqual(weekFor('nouhayla','2026-10-26'),NEXT_SHIFTS.nouhayla);
+  assert.equal(shiftFor('nouhayla',3,'2026-10-28'),'11:00 – 19:00');
+  assert.equal(shiftFor('kaoutar',3,'2026-10-28'),'16:00 – Fin de service');
+  assert.equal(shiftFor('abderahim',3,'2026-10-28'),'08:00 – 16:00');
+  assert.equal(shiftFor('nouhayla',5,'2026-10-30'),'08:00 – 16:00');
+  assert.equal(shiftFor('abderahim',0,'2026-11-01'),'08:00 – 16:00');
+  assert.deepEqual(weekFor('nouhayla','2026-11-02'),SHIFTS.nouhayla);
 });
