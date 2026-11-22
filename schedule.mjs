@@ -53,7 +53,7 @@ export const NOVEMBER_23_SHIFTS = Object.freeze({
     "10:00 – 18:00",
     "08:00 – 16:00",
     "08:00 – 16:00",
-    "10:00 – 18:00"
+    "08:00 – 16:00"
   ],
   "kaoutar": [
     "08:00 – 16:00",
@@ -62,7 +62,7 @@ export const NOVEMBER_23_SHIFTS = Object.freeze({
     "16:00 – Fin de service",
     "16:00 – Fin de service",
     "08:00 – 16:00",
-    "08:00 – 16:00"
+    "10:00 – 18:00"
   ],
   "abderahim": [
     "08:00 – 16:00",
